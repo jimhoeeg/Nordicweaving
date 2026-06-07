@@ -8,39 +8,59 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            serif: ['"Cormorant Garamond"', 'Garamond', 'Georgia', 'serif'],
             sans: ['Inter', 'system-ui', 'sans-serif'],
           },
           colors: {
-            cream: '#F7F3EC',
-            sand: '#E8DFCF',
-            linen: '#D9CDB5',
-            taupe: '#A89A82',
-            stone: '#6B6353',
-            ink:   '#2A2620',
-            forest:'#3F4D3A',
-            duskybeige:'#C9B89A',
-            lightgrey:'#C9CCC9',
-            darkgrey: '#5C615F',
+            /* Nordic Weaving brand palette */
+            cream:    '#F5EFE5',
+            creamlt:  '#FBF7F0',
+            sand:     '#E8DDC9',
+            linen:    '#D9CDB5',
+            taupe:    '#A89A82',
+            stone:    '#6B6353',
+            ink:      '#1F2420',
+            navy:     '#16201B',
+            sage:     '#5C6B58',
+            sageDark: '#4B5847',
+            sageLight:'#8E9D86',
+            mist:     '#C7D1C0',
           },
           boxShadow: {
-            soft: '0 10px 40px -15px rgba(42,38,32,0.25)',
-            card: '0 4px 20px -8px rgba(42,38,32,0.18)',
+            soft: '0 10px 40px -15px rgba(31,36,32,0.22)',
+            card: '0 4px 18px -8px rgba(31,36,32,0.14)',
           }
         }
       }
     }
   </script>
   <style>
-    html, body { background:#F7F3EC; color:#2A2620; }
+    html, body { background:#F5EFE5; color:#1F2420; }
     body { font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; }
-    h1,h2,h3,.serif { font-family:'Playfair Display', serif; }
+    h1,h2,h3,.serif { font-family:'Cormorant Garamond', serif; font-weight:400; letter-spacing:-0.01em; }
+    h1 { letter-spacing:-0.02em; }
+
+    /* logo mark — small woven knot */
+    .logo-mark {
+      width: 22px; height: 22px;
+      background: radial-gradient(circle at 30% 30%, #1F2420 0 38%, transparent 39%),
+                  radial-gradient(circle at 70% 70%, #1F2420 0 38%, transparent 39%);
+      border-radius: 50%;
+      position: relative;
+    }
+    .logo-mark::before, .logo-mark::after {
+      content:""; position:absolute; inset:0;
+      border-radius:50%;
+      border: 1.5px solid #1F2420;
+      transform: scale(.85);
+    }
+    .logo-mark::after { transform: scale(.85) rotate(45deg); border-style:dashed; opacity:.5; }
 
     /* fade animations */
     .fade-in { animation: fadeIn .55s ease forwards; }
@@ -54,90 +74,99 @@
       40% { transform:scale(1); opacity:1; }
     }
 
-    /* Quiz card hover */
+    /* Quiz card */
     .quiz-card {
-      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+      background:#FBF7F0;
+      border: 1px solid #E2D8C2;
     }
-    .quiz-card:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -20px rgba(42,38,32,0.30); }
-    .quiz-card.selected { border-color:#2A2620; background:#fff; }
+    .quiz-card:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -22px rgba(31,36,32,0.30); border-color:#A89A82; }
+    .quiz-card.selected { border-color:#5C6B58; background:#fff; box-shadow: 0 14px 30px -18px rgba(92,107,88,0.45); }
 
-    /* color palette swatches */
-    .swatch { width:18px; height:18px; border-radius:9999px; border:1px solid rgba(0,0,0,.08); }
+    .swatch { width:16px; height:16px; border-radius:9999px; border:1px solid rgba(0,0,0,.08); }
 
-    /* Bed scene */
+    /* ================ BED SCENE ================ */
     .bed-scene {
       position:relative;
       width:100%;
       aspect-ratio: 4/3;
-      max-width: 560px;
+      max-width: 580px;
       margin:0 auto;
-      border-radius: 18px;
+      border-radius: 4px;
       overflow:hidden;
-      background: linear-gradient(180deg, #EFE7D8 0%, #E2D6BE 65%, #D6C8AC 100%);
+      background: linear-gradient(180deg, #EFE6D5 0%, #E5D9C0 60%, #D8C9AB 100%);
       box-shadow: inset 0 0 80px rgba(0,0,0,0.06);
     }
-    .wall-deco {
-      position:absolute; top:8%; left:50%; transform:translateX(-50%);
-      width:28%; aspect-ratio:1/1.4; border-radius:50% 50% 45% 45%;
-      background: rgba(255,255,255,0.35);
-      border: 1px solid rgba(255,255,255,0.5);
-    }
+    /* wall lamp */
     .lamp {
-      position:absolute; top:6%; right:8%; width:8%; aspect-ratio:1/1.2;
-      background: rgba(42,38,32,0.18);
+      position:absolute; top:5%; right:10%;
+      width:9%; aspect-ratio:1/1.1;
+      background: rgba(31,36,32,0.20);
       border-radius: 50% 50% 30% 30%;
     }
     .lamp::after{
-      content:""; position:absolute; left:50%; top:-30%; width:2px; height:30%;
-      background:rgba(42,38,32,0.3); transform:translateX(-50%);
+      content:""; position:absolute; left:50%; top:-30%; width:1.5px; height:30%;
+      background:rgba(31,36,32,0.3); transform:translateX(-50%);
+    }
+    /* rattan circle decoration */
+    .deco {
+      position:absolute; top:8%; left:14%;
+      width:18%; aspect-ratio:1/1; border-radius:50%;
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.45);
+      box-shadow: inset 0 0 0 1px rgba(31,36,32,0.05);
+    }
+    .deco::before {
+      content:""; position:absolute; inset:18%;
+      border-radius:50%;
+      border: 1px dashed rgba(255,255,255,0.55);
     }
 
     .bed-base {
-      position:absolute; left:8%; right:8%; bottom:8%;
-      height: 56%;
-      border-radius: 8px 8px 6px 6px;
-      background: #BFAE8F;
-      box-shadow: 0 12px 30px -10px rgba(0,0,0,.25);
+      position:absolute; left:6%; right:6%; bottom:6%;
+      height: 58%;
+      border-radius: 4px;
+      background: linear-gradient(180deg, #C2AF8F 0%, #A8957A 100%);
+      box-shadow: 0 14px 32px -10px rgba(0,0,0,.28);
     }
     .headboard {
-      position:absolute; left:5%; right:5%; bottom: 50%;
-      height: 28%;
-      background: #8E7E62;
-      border-radius: 14px 14px 4px 4px;
-      box-shadow: inset 0 6px 0 rgba(255,255,255,0.05);
+      position:absolute; left:3%; right:3%; bottom: 50%;
+      height: 30%;
+      background: linear-gradient(180deg, #8E7E62 0%, #6F6147 100%);
+      border-radius: 6px 6px 2px 2px;
     }
     .mattress {
-      position:absolute; left:9%; right:9%; bottom: 13%;
-      height: 12%;
+      position:absolute; left:8%; right:8%; bottom: 12%;
+      height: 13%;
       background:#FAF6EE;
-      border-radius: 6px;
+      border-radius: 4px;
       box-shadow: inset 0 -2px 0 rgba(0,0,0,0.06);
     }
     .sheet {
-      position:absolute; left:9.5%; right:9.5%; bottom: 11%;
-      height: 30%;
+      position:absolute; left:8.5%; right:8.5%; bottom: 10%;
+      height: 32%;
       background: var(--c-sheet, #F0E6D2);
-      border-radius: 6px 6px 4px 4px;
-      transition: background .4s ease;
+      border-radius: 4px;
+      transition: background .4s ease, height .5s ease;
     }
     .duvet {
-      position:absolute; left:11%; right:11%; bottom: 11%;
-      height: 30%;
+      position:absolute; left:11%; right:11%; bottom: 10%;
+      height: 32%;
       background: var(--c-duvet, #E0D2B5);
-      border-radius: 18px 18px 6px 6px;
+      border-radius: 14px 14px 4px 4px;
       box-shadow: 0 8px 18px -10px rgba(0,0,0,.3), inset 0 8px 14px rgba(255,255,255,.18);
       transition: background .4s ease, height .5s ease, bottom .5s ease;
     }
     /* Skandi: duvet folded down */
-    .style-skandi .duvet { height:22%; bottom:11%; }
-    .style-skandi .sheet { height:34%; }
+    .style-skandi .duvet { height:22%; bottom:10%; }
+    .style-skandi .sheet { height:36%; }
 
     /* Bedspread at foot */
     .bedspread {
-      position:absolute; left:9.5%; right:9.5%; bottom: 11%;
-      height: 10%;
+      position:absolute; left:8.5%; right:8.5%; bottom: 10%;
+      height: 11%;
       background: var(--c-spread, #B8A98C);
-      border-radius: 4px;
+      border-radius: 3px;
       box-shadow: 0 -4px 10px -6px rgba(0,0,0,.25);
       transform: translateY(20px);
       opacity:0;
@@ -147,18 +176,18 @@
 
     .pillow {
       position:absolute;
-      bottom: 36%;
+      bottom: 38%;
       width: 22%;
       height: 16%;
       background: var(--c-pillow, #F2E9D6);
-      border-radius: 12px;
+      border-radius: 10px;
       box-shadow: 0 6px 14px -6px rgba(0,0,0,.25);
       transition: background .4s ease, transform .4s ease, opacity .4s ease;
     }
     .pillow.p1 { left: 22%; }
     .pillow.p2 { right: 22%; background: var(--c-pillow2, var(--c-pillow, #F2E9D6)); }
     .pillow.p3, .pillow.p4 {
-      bottom: 44%; width:18%; height:12%;
+      bottom: 46%; width:18%; height:12%;
       opacity:0;
       transform: translateY(8px) scale(.95);
       pointer-events:none;
@@ -168,68 +197,74 @@
     .style-hotel .pillow.p3, .style-hotel .pillow.p4 {
       opacity:1; transform: translateY(0) scale(1);
     }
-
-    /* Boho: tilt pillows + mixed colors handled by JS swatches */
     .style-boho .pillow.p1 { transform: rotate(-3deg); }
     .style-boho .pillow.p2 { transform: rotate(2deg); }
 
     /* Controls */
     .palette-btn, .style-btn {
       transition: all .2s ease;
-      border: 1.5px solid #E4DDCB;
-      background:#fff;
+      border: 1px solid #E2D8C2;
+      background:#FBF7F0;
     }
-    .palette-btn:hover, .style-btn:hover { border-color:#A89A82; }
+    .palette-btn:hover, .style-btn:hover { border-color:#A89A82; background:#fff; }
     .palette-btn.active, .style-btn.active {
-      border-color:#2A2620;
-      background:#FAF6EE;
-      box-shadow: 0 6px 18px -10px rgba(42,38,32,.4);
+      border-color:#5C6B58;
+      background:#fff;
+      box-shadow: 0 8px 22px -14px rgba(92,107,88,.55);
     }
 
     /* toggle */
     .toggle {
-      width: 46px; height: 26px; background:#D9CDB5; border-radius:9999px;
+      width: 44px; height: 24px; background:#D9CDB5; border-radius:9999px;
       position:relative; transition: background .25s ease; flex-shrink:0;
     }
     .toggle::after {
       content:""; position:absolute; top:3px; left:3px;
-      width:20px; height:20px; border-radius:50%; background:#fff;
+      width:18px; height:18px; border-radius:50%; background:#fff;
       transition: transform .25s ease;
       box-shadow: 0 2px 4px rgba(0,0,0,.15);
     }
-    .toggle.on { background:#2A2620; }
+    .toggle.on { background:#5C6B58; }
     .toggle.on::after { transform: translateX(20px); }
 
     .step-num {
-      width:28px; height:28px; border-radius:9999px;
-      background:#2A2620; color:#F7F3EC;
+      width:30px; height:30px; border-radius:9999px;
+      background:transparent; color:#1F2420;
+      border: 1px solid #1F2420;
       display:inline-flex; align-items:center; justify-content:center;
-      font-size:14px; font-weight:500; font-family:'Playfair Display', serif;
+      font-size:14px; font-weight:400; font-family:'Cormorant Garamond', serif;
     }
 
-    /* Hide sections by default; JS toggles */
     .screen { display:none; }
     .screen.active { display:block; }
 
-    /* sticky bar safe area */
-    .pb-safe { padding-bottom: calc(112px + env(safe-area-inset-bottom)); }
+    .pb-safe { padding-bottom: calc(110px + env(safe-area-inset-bottom)); }
 
-    /* progress bar */
-    .progress-bar { height:3px; background:#E4DDCB; border-radius:9999px; overflow:hidden; }
-    .progress-fill { height:100%; background:#2A2620; transition: width .35s ease; }
+    .progress-bar { height:1px; background:#D9CDB5; }
+    .progress-fill { height:100%; background:#1F2420; transition: width .35s ease; }
 
-    /* tiny utility */
+    /* Brand buttons */
     .btn-primary {
-      background:#2A2620; color:#F7F3EC;
+      background:#5C6B58; color:#FBF7F0;
       transition: background .2s ease, transform .15s ease;
+      border:1px solid #5C6B58;
     }
-    .btn-primary:hover { background:#000; }
+    .btn-primary:hover { background:#4B5847; border-color:#4B5847; }
     .btn-primary:active { transform:translateY(1px); }
-    .btn-ghost {
-      background:transparent; color:#2A2620; border:1px solid #2A2620;
-      transition: background .2s ease;
+    .btn-secondary {
+      background:#FBF7F0; color:#1F2420; border:1px solid #1F2420;
+      transition: all .2s ease;
     }
-    .btn-ghost:hover { background:#2A2620; color:#F7F3EC; }
+    .btn-secondary:hover { background:#1F2420; color:#FBF7F0; }
+
+    /* Top utility bar */
+    .util-bar {
+      background:#16201B; color:#E8DDC9;
+      font-size:11px; letter-spacing:0.04em;
+    }
+
+    /* Section dividers (thin) */
+    .hairline { border-color:#E2D8C2; }
 
     @media (max-width: 768px) {
       .bed-scene { max-width: 420px; }
@@ -238,27 +273,56 @@
 </head>
 <body class="min-h-screen pb-safe">
 
-  <!-- Header -->
-  <header class="w-full px-6 md:px-10 py-5 flex items-center justify-between border-b border-sand/60 bg-cream/80 backdrop-blur sticky top-0 z-30">
-    <div class="flex items-center gap-2">
-      <div class="w-8 h-8 rounded-full bg-ink flex items-center justify-center">
-        <span class="serif text-cream text-lg italic">N</span>
+  <!-- Top utility bar (matches brand) -->
+  <div class="util-bar w-full">
+    <div class="max-w-7xl mx-auto px-5 md:px-10 py-2.5 flex items-center justify-between gap-6 overflow-hidden">
+      <div class="flex items-center gap-6 whitespace-nowrap overflow-hidden">
+        <span class="flex items-center gap-2">⏱ Bestil før 14 — sendes i dag</span>
+        <span class="hidden md:flex items-center gap-2">↺ 14 dages retur</span>
+        <span class="hidden lg:flex items-center gap-2">✓ OEKO-TEX certificeret</span>
       </div>
-      <div class="leading-tight">
-        <div class="serif text-lg text-ink">Nordic Weaving</div>
-        <div class="text-[11px] tracking-[0.18em] uppercase text-stone">Luxury bedding · est. 2018</div>
+      <div class="hidden md:flex items-center gap-5 text-xs whitespace-nowrap">
+        <a href="#" class="hover:text-cream">Kundeservice</a>
+        <a href="#" class="hover:text-cream">Retur / Ombytning</a>
       </div>
     </div>
-    <nav class="hidden md:flex gap-7 text-sm text-stone">
-      <a href="#" class="hover:text-ink">Materialer</a>
-      <a href="#" class="hover:text-ink">Kollektioner</a>
-      <a href="#" class="hover:text-ink">Om brandet</a>
-      <a href="#" class="hover:text-ink">Kontakt</a>
+  </div>
+
+  <!-- Main header -->
+  <header class="w-full bg-cream/95 backdrop-blur sticky top-0 z-30 border-b hairline">
+    <div class="max-w-7xl mx-auto px-5 md:px-10 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-5 text-sm text-ink">
+        <button class="flex items-center gap-2 hover:opacity-70">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span class="hidden sm:inline">Søg</span>
+        </button>
+      </div>
+      <a href="#" class="flex items-center gap-2.5">
+        <span class="logo-mark"></span>
+        <div class="serif text-xl leading-none">
+          <div style="line-height:1">nordic</div>
+          <div style="line-height:1; margin-top:-2px">weaving</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-5 text-sm text-ink">
+        <a href="#" class="hidden sm:inline hover:opacity-70">Konto</a>
+        <a href="#" class="flex items-center gap-2 hover:opacity-70">
+          <span class="hidden sm:inline">Kurv</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 7h14l-1.5 12a2 2 0 0 1-2 1.8H8.5a2 2 0 0 1-2-1.8L5 7Z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
+        </a>
+      </div>
+    </div>
+    <!-- Nav -->
+    <nav class="hidden md:block border-t hairline">
+      <ul class="max-w-7xl mx-auto px-5 md:px-10 py-3.5 flex items-center justify-center gap-10 text-sm text-ink">
+        <li><a href="#" class="border-b border-ink pb-0.5">Udforsk</a></li>
+        <li><a href="#" class="hover:opacity-70">Soveværelse</a></li>
+        <li><a href="#" class="hover:opacity-70">Badeværelse</a></li>
+        <li><a href="#" class="hover:opacity-70">Beklædning</a></li>
+        <li><a href="#" class="hover:opacity-70">Accessories</a></li>
+        <li><a href="#" class="hover:opacity-70">Om os</a></li>
+      </ul>
     </nav>
-    <button class="text-sm flex items-center gap-2 text-ink">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h2l2.6 11.2a2 2 0 0 0 2 1.6h7.4a2 2 0 0 0 2-1.6L21 9H6"/><circle cx="9" cy="21" r="1.2"/><circle cx="18" cy="21" r="1.2"/></svg>
-      <span class="hidden sm:inline">Kurv</span>
-    </button>
   </header>
 
   <main class="relative">
@@ -266,30 +330,44 @@
     <!-- =================== INTRO SCREEN =================== -->
     <section id="screen-intro" class="screen active">
       <div class="max-w-5xl mx-auto px-6 md:px-10 pt-14 md:pt-24 pb-24 text-center">
-        <div class="text-[11px] tracking-[0.3em] uppercase text-stone mb-6">Guided selling · 3 minutter</div>
-        <h1 class="serif text-5xl md:text-7xl text-ink leading-[1.05] mb-6">Design din<br/><em class="italic font-normal">drømmesøvn</em></h1>
+        <div class="text-[11px] tracking-[0.25em] uppercase text-stone mb-6">Guided selling · 3 minutter</div>
+        <h1 class="text-5xl md:text-7xl text-ink leading-[1.02] mb-7">
+          Design din<br/><em class="italic font-light">drømmesøvn</em>
+        </h1>
         <p class="text-stone max-w-xl mx-auto text-base md:text-lg leading-relaxed mb-10">
-          Lad os finde det sengetøj, der passer perfekt til dig.
-          Tre korte spørgsmål — og vi designer dit personlige luksus-setup.
+          Tre korte spørgsmål — og vi finder det sengetøj i bambus, egyptisk bomuld, hør eller silke,
+          der passer perfekt til dig.
         </p>
-        <button id="start-btn" class="btn-primary inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm tracking-wide uppercase">
-          Start oplevelsen
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </button>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <button id="start-btn" class="btn-primary inline-flex items-center gap-3 px-8 py-3.5 text-sm tracking-wide">
+            Start oplevelsen
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+          <a href="#" class="btn-secondary inline-flex items-center gap-3 px-8 py-3.5 text-sm tracking-wide">
+            Shop sengetøj
+          </a>
+        </div>
 
-        <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto text-left">
-          <div class="bg-white/60 rounded-xl p-5 border border-sand/70">
-            <div class="serif text-2xl mb-1">01</div>
+        <div class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto text-left">
+          <div class="border-l-2 border-sage pl-5">
+            <div class="serif text-3xl mb-1 text-ink">01</div>
             <div class="text-sm text-stone leading-relaxed">Fortæl os om dine søvnvaner</div>
           </div>
-          <div class="bg-white/60 rounded-xl p-5 border border-sand/70">
-            <div class="serif text-2xl mb-1">02</div>
-            <div class="text-sm text-stone leading-relaxed">Design farver & opredning</div>
+          <div class="border-l-2 border-sage pl-5">
+            <div class="serif text-3xl mb-1 text-ink">02</div>
+            <div class="text-sm text-stone leading-relaxed">Vi matcher dig med det rette materiale</div>
           </div>
-          <div class="bg-white/60 rounded-xl p-5 border border-sand/70">
-            <div class="serif text-2xl mb-1">03</div>
-            <div class="text-sm text-stone leading-relaxed">Modtag dit personlige forslag</div>
+          <div class="border-l-2 border-sage pl-5">
+            <div class="serif text-3xl mb-1 text-ink">03</div>
+            <div class="text-sm text-stone leading-relaxed">Design farver, opredning & detaljer</div>
           </div>
+        </div>
+
+        <!-- Trust strip à la brand -->
+        <div class="mt-20 pt-8 border-t hairline flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm text-stone">
+          <span class="flex items-center gap-2">♡ Dansk virksomhed</span>
+          <span class="flex items-center gap-2">★ 4,7 stjerner på Trustpilot</span>
+          <span class="flex items-center gap-2">🚚 Fri fragt over 500 kr.</span>
         </div>
       </div>
     </section>
@@ -299,14 +377,14 @@
       <div class="max-w-4xl mx-auto px-5 md:px-10 pt-10 md:pt-16 pb-24">
         <div class="flex items-center justify-between mb-6">
           <button id="quiz-back" class="text-sm text-stone hover:text-ink flex items-center gap-2">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
             Tilbage
           </button>
           <div class="text-[11px] tracking-[0.25em] uppercase text-stone">
-            Spørgsmål <span id="q-current">1</span> af 3
+            Spørgsmål <span id="q-current">1</span> / 3
           </div>
         </div>
-        <div class="progress-bar mb-10">
+        <div class="progress-bar mb-12">
           <div id="progress-fill" class="progress-fill" style="width:33%"></div>
         </div>
 
@@ -318,11 +396,11 @@
     <section id="screen-loading" class="screen">
       <div class="max-w-3xl mx-auto px-6 pt-32 md:pt-48 pb-32 text-center">
         <div class="flex justify-center gap-2 mb-8">
-          <span class="pulse-dot w-3 h-3 rounded-full bg-ink inline-block"></span>
-          <span class="pulse-dot w-3 h-3 rounded-full bg-ink inline-block"></span>
-          <span class="pulse-dot w-3 h-3 rounded-full bg-ink inline-block"></span>
+          <span class="pulse-dot w-2.5 h-2.5 rounded-full bg-sage inline-block"></span>
+          <span class="pulse-dot w-2.5 h-2.5 rounded-full bg-sage inline-block"></span>
+          <span class="pulse-dot w-2.5 h-2.5 rounded-full bg-sage inline-block"></span>
         </div>
-        <h2 class="serif text-3xl md:text-4xl text-ink mb-4">Analyserer dine søvnpræferencer</h2>
+        <h2 class="serif text-4xl md:text-5xl text-ink mb-4 leading-tight">Analyserer dine søvnpræferencer</h2>
         <p class="text-stone">Vi finder det perfekte materiale-match til dig…</p>
       </div>
     </section>
@@ -332,22 +410,22 @@
       <div class="max-w-7xl mx-auto px-5 md:px-10 pt-8 md:pt-12">
         <div class="flex items-center justify-between mb-8">
           <button id="config-back" class="text-sm text-stone hover:text-ink flex items-center gap-2">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
             Tag quizzen igen
           </button>
           <div class="text-[11px] tracking-[0.25em] uppercase text-stone">Konfigurator</div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-14 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-start">
 
           <!-- LEFT: Live preview -->
-          <div class="lg:col-span-3 lg:sticky lg:top-28">
-            <div class="text-center mb-4">
+          <div class="lg:col-span-3 lg:sticky lg:top-36">
+            <div class="text-center mb-5">
               <div class="text-[11px] tracking-[0.3em] uppercase text-stone mb-2">Live forhåndsvisning</div>
-              <h2 class="serif text-3xl md:text-4xl text-ink">Din seng tager form</h2>
+              <h2 class="serif text-4xl md:text-5xl text-ink leading-tight">Din seng tager form</h2>
             </div>
             <div id="bed-scene" class="bed-scene">
-              <div class="wall-deco"></div>
+              <div class="deco"></div>
               <div class="lamp"></div>
               <div class="headboard"></div>
               <div class="bed-base"></div>
@@ -361,46 +439,46 @@
               <div class="pillow p2"></div>
             </div>
             <div class="mt-6 max-w-md mx-auto text-center">
-              <div class="text-[11px] tracking-[0.25em] uppercase text-stone mb-1">Dit match</div>
-              <div id="material-name" class="serif text-2xl text-ink">—</div>
+              <div class="text-[11px] tracking-[0.3em] uppercase text-stone mb-1">Dit match</div>
+              <div id="material-name" class="serif text-3xl text-ink">—</div>
               <p id="material-desc" class="text-sm text-stone mt-2 leading-relaxed">—</p>
             </div>
           </div>
 
           <!-- RIGHT: Controls -->
-          <div class="lg:col-span-2 space-y-10">
+          <div class="lg:col-span-2 space-y-12">
 
             <!-- Step 1: Color palette -->
             <div>
-              <div class="flex items-center gap-3 mb-4">
+              <div class="flex items-center gap-3 mb-3">
                 <span class="step-num">1</span>
-                <h3 class="serif text-2xl text-ink">Vælg dit farveunivers</h3>
+                <h3 class="serif text-3xl text-ink">Vælg dit farveunivers</h3>
               </div>
-              <p class="text-sm text-stone mb-5">Tre kuraterede paletter, fra støvet ro til kontrasternes spil.</p>
+              <p class="text-sm text-stone mb-5">Tre kuraterede paletter — fra støvet ro til kontrasternes spil.</p>
               <div class="space-y-3" id="palette-list"></div>
             </div>
 
             <!-- Step 2: Style -->
             <div>
-              <div class="flex items-center gap-3 mb-4">
+              <div class="flex items-center gap-3 mb-3">
                 <span class="step-num">2</span>
-                <h3 class="serif text-2xl text-ink">Vælg din opredningsstil</h3>
+                <h3 class="serif text-3xl text-ink">Vælg din opredningsstil</h3>
               </div>
-              <p class="text-sm text-stone mb-5">Hvordan vil din seng være redt om morgenen?</p>
+              <p class="text-sm text-stone mb-5">Hvordan skal din seng være redt om morgenen?</p>
               <div class="space-y-3" id="style-list"></div>
             </div>
 
             <!-- Step 3: Mersalg -->
             <div>
-              <div class="flex items-center gap-3 mb-4">
+              <div class="flex items-center gap-3 mb-3">
                 <span class="step-num">3</span>
-                <h3 class="serif text-2xl text-ink">Finpuds detaljerne</h3>
+                <h3 class="serif text-3xl text-ink">Finpuds detaljerne</h3>
               </div>
-              <p class="text-sm text-stone mb-5">Den lille forskel, der gør sengen komplet.</p>
+              <p class="text-sm text-stone mb-5">Den lille forskel der gør sengen komplet.</p>
 
-              <button id="spread-toggle" class="w-full flex items-center justify-between gap-4 rounded-xl border border-sand p-4 bg-white text-left">
+              <button id="spread-toggle" class="w-full flex items-center justify-between gap-4 border hairline p-5 bg-creamlt text-left hover:border-taupe transition-colors">
                 <div>
-                  <div class="serif text-lg text-ink">Matchende sengetæppe</div>
+                  <div class="serif text-xl text-ink leading-tight">Matchende sengetæppe</div>
                   <div class="text-sm text-stone mt-1">Tilføj et blødt sengetæppe i fodenden. <span class="text-ink font-medium">+499 kr.</span></div>
                 </div>
                 <span class="toggle" id="spread-knob"></span>
@@ -417,35 +495,32 @@
 
   <!-- =================== STICKY BOTTOM BAR =================== -->
   <div id="sticky-bar" class="fixed bottom-0 left-0 right-0 z-40 hidden">
-    <div class="bg-white border-t border-sand shadow-soft">
+    <div class="bg-creamlt border-t hairline shadow-soft">
       <div class="max-w-7xl mx-auto px-5 md:px-10 py-4 flex items-center gap-4 md:gap-8">
         <div class="hidden sm:block">
-          <div class="text-[10px] tracking-[0.25em] uppercase text-stone">Dit match</div>
-          <div class="serif text-base md:text-lg text-ink leading-tight" id="bar-material">BambusSatin</div>
+          <div class="text-[10px] tracking-[0.3em] uppercase text-stone">Dit match</div>
+          <div class="serif text-lg md:text-xl text-ink leading-tight" id="bar-material">BambusSatin</div>
         </div>
         <div class="flex-1 sm:flex-none">
-          <div class="text-[10px] tracking-[0.25em] uppercase text-stone">Total</div>
-          <div class="serif text-xl md:text-2xl text-ink leading-tight">
+          <div class="text-[10px] tracking-[0.3em] uppercase text-stone">Total</div>
+          <div class="serif text-2xl md:text-3xl text-ink leading-tight">
             <span id="bar-price">1.499</span> <span class="text-sm font-sans text-stone">kr.</span>
           </div>
         </div>
-        <button id="add-to-cart" class="btn-primary ml-auto flex items-center gap-2 px-5 md:px-8 py-3 md:py-4 rounded-full text-xs md:text-sm tracking-wide uppercase">
+        <button id="add-to-cart" class="btn-primary ml-auto flex items-center gap-2 px-6 md:px-10 py-3 md:py-3.5 text-xs md:text-sm tracking-wide">
           Læg i kurv
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- =================== TOAST =================== -->
-  <div id="toast" class="fixed bottom-28 left-1/2 -translate-x-1/2 bg-ink text-cream text-sm px-5 py-3 rounded-full shadow-soft z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-28 left-1/2 -translate-x-1/2 bg-sage text-creamlt text-sm px-5 py-3 rounded-full shadow-soft z-50 opacity-0 pointer-events-none transition-opacity duration-300">
     Tilføjet til kurven ✓
   </div>
 
   <script>
-  /* ============================================================
-     STATE
-  ============================================================ */
   const state = {
     answers: { q1:null, q2:null, q3:null },
     material: null,
@@ -455,9 +530,6 @@
     basePrice: 1499,
   };
 
-  /* ============================================================
-     QUIZ DATA
-  ============================================================ */
   const questions = [
     {
       id: 'q1',
@@ -491,9 +563,7 @@
     },
   ];
 
-  /* ============================================================
-     PALETTES
-  ============================================================ */
+  /* Brand-aligned palettes */
   const palettes = {
     mono: {
       name: 'Monokrom luksus',
@@ -511,46 +581,40 @@
     },
     contrast: {
       name: 'Kontrasternes spil',
-      desc: 'Skovgrøn dyne, støvet beige lagen og puder.',
-      colors: ['#3F4D3A','#C9B89A','#E8DCC2'],
+      desc: 'Sage-grøn dyne, støvet beige lagen og puder.',
+      colors: ['#5C6B58','#C9B89A','#E8DCC2'],
       vars: {
-        '--c-duvet': '#3F4D3A',
+        '--c-duvet': '#5C6B58',
         '--c-sheet': '#E8DCC2',
         '--c-pillow':'#C9B89A',
         '--c-pillow2':'#C9B89A',
-        '--c-pillowAccent':'#3F4D3A',
-        '--c-pillowAccent2':'#9CAA8E',
-        '--c-spread':'#2D3A2A',
+        '--c-pillowAccent':'#4B5847',
+        '--c-pillowAccent2':'#8E9D86',
+        '--c-spread':'#3F4D3A',
       }
     },
     tonal: {
       name: 'Tone-i-tone',
-      desc: 'Lysegrå dyne, mørkegrå puder — moderne ro.',
-      colors: ['#D2D5D2','#9CA09C','#5C615F'],
+      desc: 'Salviegrøn dyne, dybe grønne puder — moderne ro.',
+      colors: ['#C7D1C0','#8E9D86','#4B5847'],
       vars: {
-        '--c-duvet': '#CDD1CD',
-        '--c-sheet': '#E2E4E1',
-        '--c-pillow':'#5C615F',
-        '--c-pillow2':'#5C615F',
-        '--c-pillowAccent':'#9CA09C',
-        '--c-pillowAccent2':'#9CA09C',
-        '--c-spread':'#7A7E7B',
+        '--c-duvet': '#C7D1C0',
+        '--c-sheet': '#E1E5DD',
+        '--c-pillow':'#4B5847',
+        '--c-pillow2':'#4B5847',
+        '--c-pillowAccent':'#8E9D86',
+        '--c-pillowAccent2':'#8E9D86',
+        '--c-spread':'#6E7A68',
       }
     }
   };
 
-  /* ============================================================
-     STYLES (opredning)
-  ============================================================ */
   const styles = {
     hotel:  { name:'Det 5-stjernede Hotellook',  desc:'4 hovedpuder, militærskarpe folder.', delta: 399, cls:'style-hotel' },
     skandi: { name:'Skandinavisk Minimalisme',   desc:'Dynen foldet halvt ned, ren og rolig.', delta: 0,   cls:'style-skandi' },
     boho:   { name:'Casual Boho-Chic',           desc:'Afslappet udtryk med mixede puder.',    delta: 199, cls:'style-boho' },
   };
 
-  /* ============================================================
-     MATERIAL LOGIC
-  ============================================================ */
   const materials = {
     bambussatin: {
       name: 'BambusSatin',
@@ -562,24 +626,19 @@
     },
     hor: {
       name: 'Hør',
-      desc: 'Levende naturmateriale med rustikt fald. Bliver blødere for hver vask og puster konstant — varm om vinteren, kølig om sommeren.',
+      desc: 'Levende naturmateriale med rustikt fald. Bliver blødere for hver vask — varm om vinteren, kølig om sommeren.',
     },
   };
 
   function pickMaterial(a){
-    // Primær: følelse (q2). Modifikation: temperatur (q1).
     if (a.q2 === 'crisp') return 'percale';
     if (a.q2 === 'rustic') return 'hor';
     if (a.q2 === 'silky') return 'bambussatin';
-    // Fallback
     if (a.q1 === 'hot') return 'bambussatin';
     if (a.q1 === 'cold') return 'percale';
     return 'hor';
   }
 
-  /* ============================================================
-     SCREEN MGMT
-  ============================================================ */
   const screens = ['intro','quiz','loading','config'];
   function show(name){
     screens.forEach(s => {
@@ -590,9 +649,6 @@
     window.scrollTo({ top:0, behavior:'instant' });
   }
 
-  /* ============================================================
-     QUIZ RENDERING
-  ============================================================ */
   let qIndex = 0;
   function renderQuestion(){
     const q = questions[qIndex];
@@ -605,15 +661,15 @@
     container.classList.add('fade-in');
 
     container.innerHTML = `
-      <h2 class="serif text-3xl md:text-5xl text-ink text-center leading-tight mb-3">${q.title}</h2>
-      <p class="text-stone text-center mb-10 max-w-xl mx-auto">${q.subtitle}</p>
+      <h2 class="serif text-4xl md:text-6xl text-ink text-center leading-tight mb-3">${q.title}</h2>
+      <p class="text-stone text-center mb-12 max-w-xl mx-auto">${q.subtitle}</p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
         ${q.options.map(opt => `
-          <button data-id="${opt.id}" class="quiz-card group text-left bg-white/80 border-2 border-sand/80 rounded-2xl p-6 md:p-7 flex flex-col gap-4 min-h-[170px]">
+          <button data-id="${opt.id}" class="quiz-card group text-left rounded-sm p-6 md:p-7 flex flex-col gap-4 min-h-[180px]">
             <div class="text-4xl">${opt.icon}</div>
             <div>
-              <div class="serif text-xl text-ink">${opt.label}</div>
-              <div class="text-sm text-stone mt-1">${opt.sub}</div>
+              <div class="serif text-2xl text-ink leading-tight">${opt.label}</div>
+              <div class="text-sm text-stone mt-1.5">${opt.sub}</div>
             </div>
           </button>
         `).join('')}
@@ -625,18 +681,14 @@
         container.querySelectorAll('.quiz-card').forEach(c => c.classList.remove('selected'));
         card.classList.add('selected');
         state.answers[q.id] = card.dataset.id;
-        setTimeout(nextQuestion, 280);
+        setTimeout(nextQuestion, 300);
       });
     });
   }
 
   function nextQuestion(){
-    if (qIndex < questions.length-1){
-      qIndex++;
-      renderQuestion();
-    } else {
-      goToLoading();
-    }
+    if (qIndex < questions.length-1){ qIndex++; renderQuestion(); }
+    else goToLoading();
   }
 
   function goToLoading(){
@@ -648,29 +700,24 @@
     }, 1800);
   }
 
-  /* ============================================================
-     CONFIGURATOR RENDERING
-  ============================================================ */
   function renderConfigurator(){
-    // material display
     const m = materials[state.material];
     document.getElementById('material-name').textContent = m.name;
     document.getElementById('material-desc').textContent = m.desc;
     document.getElementById('bar-material').textContent = m.name;
 
-    // palette list
     const pl = document.getElementById('palette-list');
     pl.innerHTML = Object.entries(palettes).map(([key, p]) => `
-      <button data-key="${key}" class="palette-btn w-full rounded-xl p-4 flex items-center gap-4 text-left ${state.palette===key?'active':''}">
+      <button data-key="${key}" class="palette-btn w-full p-4 flex items-center gap-4 text-left ${state.palette===key?'active':''}">
         <div class="flex -space-x-1.5">
           ${p.colors.map(c => `<span class="swatch" style="background:${c}"></span>`).join('')}
         </div>
         <div class="flex-1">
-          <div class="serif text-base text-ink leading-tight">${p.name}</div>
+          <div class="serif text-xl text-ink leading-tight">${p.name}</div>
           <div class="text-xs text-stone mt-0.5">${p.desc}</div>
         </div>
-        <span class="check w-5 h-5 rounded-full border border-ink flex items-center justify-center">
-          ${state.palette===key ? '<span class="w-2.5 h-2.5 bg-ink rounded-full"></span>' : ''}
+        <span class="check w-4 h-4 rounded-full border border-ink flex items-center justify-center">
+          ${state.palette===key ? '<span class="w-2 h-2 bg-sage rounded-full"></span>' : ''}
         </span>
       </button>
     `).join('');
@@ -682,15 +729,14 @@
       });
     });
 
-    // style list
     const sl = document.getElementById('style-list');
     sl.innerHTML = Object.entries(styles).map(([key, s]) => `
-      <button data-key="${key}" class="style-btn w-full rounded-xl p-4 flex items-start gap-4 text-left ${state.style===key?'active':''}">
-        <div class="serif text-2xl text-ink w-8">${key==='hotel'?'★':key==='skandi'?'◇':'❀'}</div>
+      <button data-key="${key}" class="style-btn w-full p-4 flex items-start gap-4 text-left ${state.style===key?'active':''}">
+        <div class="serif text-2xl text-sage w-8 leading-none mt-0.5">${key==='hotel'?'★':key==='skandi'?'◇':'❀'}</div>
         <div class="flex-1">
-          <div class="serif text-base text-ink leading-tight">${s.name}</div>
+          <div class="serif text-xl text-ink leading-tight">${s.name}</div>
           <div class="text-xs text-stone mt-0.5">${s.desc}</div>
-          ${s.delta ? `<div class="text-xs text-ink mt-1 font-medium">+${s.delta} kr.</div>` : '<div class="text-xs text-stone mt-1">Inkluderet</div>'}
+          ${s.delta ? `<div class="text-xs text-ink mt-1.5">+${s.delta} kr.</div>` : '<div class="text-xs text-stone mt-1.5">Inkluderet</div>'}
         </div>
       </button>
     `).join('');
@@ -702,62 +748,40 @@
       });
     });
 
-    // spread toggle
     document.getElementById('spread-knob').classList.toggle('on', state.bedspread);
-
     applyBed();
     updatePrice();
   }
 
-  /* ============================================================
-     BED VISUALIZATION
-  ============================================================ */
   function applyBed(){
     const scene = document.getElementById('bed-scene');
-    // colors
     const vars = palettes[state.palette].vars;
     Object.entries(vars).forEach(([k,v]) => scene.style.setProperty(k, v));
-
-    // style class
     scene.classList.remove('style-hotel','style-skandi','style-boho');
     scene.classList.add(styles[state.style].cls);
-
-    // bedspread
     scene.querySelector('.bedspread').classList.toggle('show', state.bedspread);
   }
 
-  /* ============================================================
-     PRICING
-  ============================================================ */
   function updatePrice(){
     let total = state.basePrice + styles[state.style].delta;
     if (state.bedspread) total += 499;
     document.getElementById('bar-price').textContent = total.toLocaleString('da-DK');
   }
 
-  /* ============================================================
-     EVENTS
-  ============================================================ */
   document.getElementById('start-btn').addEventListener('click', () => {
-    qIndex = 0;
-    show('quiz');
-    renderQuestion();
+    qIndex = 0; show('quiz'); renderQuestion();
   });
   document.getElementById('quiz-back').addEventListener('click', () => {
-    if (qIndex > 0){ qIndex--; renderQuestion(); }
-    else show('intro');
+    if (qIndex > 0){ qIndex--; renderQuestion(); } else show('intro');
   });
   document.getElementById('config-back').addEventListener('click', () => {
-    qIndex = 0;
-    state.answers = {q1:null,q2:null,q3:null};
-    show('quiz');
-    renderQuestion();
+    qIndex = 0; state.answers = {q1:null,q2:null,q3:null};
+    show('quiz'); renderQuestion();
   });
   document.getElementById('spread-toggle').addEventListener('click', () => {
     state.bedspread = !state.bedspread;
     document.getElementById('spread-knob').classList.toggle('on', state.bedspread);
-    applyBed();
-    updatePrice();
+    applyBed(); updatePrice();
   });
   document.getElementById('add-to-cart').addEventListener('click', () => {
     const t = document.getElementById('toast');
