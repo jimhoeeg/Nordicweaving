@@ -520,7 +520,15 @@
         { id:'hot',  label:'Sveder altid',  icon:'🔥', sub:'Søger kølighed' },
         { id:'cold', label:'Fryser altid',  icon:'❄️', sub:'Søger varme & blødhed' },
         { id:'mid',  label:'Helt tilpas',   icon:'🌿', sub:'Naturlig komfort' },
-      ]
+      ],
+      insight: {
+        eyebrow: 'Søvnindsigt · Termoregulering',
+        brief: 'Din kropstemperatur falder ca. 1 °C i løbet af de første timer af søvnen — og netop dette fald udløser dyb NREM-søvn. Derfor er en kølig, åndbar sovetemperatur (16–19 °C) afgørende for, hvor godt du sover.',
+        details: `
+          <p>Forskere kalder det <em>circadian thermoregulation</em>: kroppen sænker sin kernetemperatur ved at sende varmt blod ud i hænder og fødder. Når varmen ikke kan slippe væk fra kroppen og sengen, forsinkes faldet — og dermed den dybe søvn, hvor kroppen reparerer væv og hjernen rydder op.</p>
+          <p>En voksen taber typisk mellem 200 ml og 1 liter sved pr. nat. Det er sengetøjets fibre, der skal håndtere både fugt og varme. Hør har naturligt hule fibre, der trækker fugt fra huden op til 4 gange hurtigere end bomuld. Bambusviskose virker termoregulerende, fordi cellulosefibrene optager og afgiver fugt dynamisk. Percale-bomuld er sval pga. en åben 1-over-1-vævning, der lader luft passere frit.</p>
+        `
+      }
     },
     {
       id: 'q2',
@@ -530,7 +538,16 @@
         { id:'crisp', label:'Sprødt som luksushotel',  icon:'🏨', sub:'Kølig, glat & strøget' },
         { id:'silky', label:'Silkeblødt & glat',       icon:'✨', sub:'Glidende & fløjlsblødt' },
         { id:'rustic',label:'Rustikt & rart',          icon:'🌾', sub:'Levende & naturligt' },
-      ]
+      ],
+      insight: {
+        eyebrow: 'Søvnindsigt · Vævning & fiber',
+        brief: 'Det er vævningen — ikke trådtallet — der bestemmer følelsen. Percale væves 1-tråd-over-1 og giver den sprøde, matte hotel-følelse. Sateen væves 4-over-1 og giver det glatte, glansfulde fald.',
+        details: `
+          <p>Trådtal er et af branchens mest misforståede tal. Et moderat trådtal i langfibret egyptisk bomuld (<em>Gossypium barbadense</em>) føles ofte bedre end et meget højt trådtal i kortfiber, fordi længere fibre giver glattere og stærkere garn — og mindre fnug efter vask.</p>
+          <p>Hør er lavet af stænglen på hørplanten <em>Linum usitatissimum</em>. Fibrene er stive og knækkede, hvilket giver det karakteristiske rustikke fald, der blødgøres for hver vask. Bambussatin er regenereret cellulose fra bambusgræs, spundet i sateen-vævning — det forklarer dens silkeagtige glat og høje åndbarhed.</p>
+          <p>En anden vigtig parameter er <strong>GSM</strong> (gram pr. m²): 100–120 GSM = let og sval, over 130 GSM = tungere og blødere. Det siger ofte mere om kvaliteten end trådtallet på pakken.</p>
+        `
+      }
     },
     {
       id: 'q3',
@@ -538,9 +555,18 @@
       subtitle: 'Vi sikrer det rigtige format og fald.',
       options: [
         { id:'single', label:'Enkeltseng',      icon:'🛏️', sub:'140 × 200 cm' },
-        { id:'double', label:'Dobbeltseng',     icon:'🛌', sub:'200 × 200 cm' },
+        { id:'double', label:'Dobbeltseng',     icon:'🛌', sub:'200 × 220 cm' },
         { id:'elev',   label:'Elevationsseng',  icon:'⚙️', sub:'Tilpasset fald' },
-      ]
+      ],
+      insight: {
+        eyebrow: 'Søvnindsigt · Pasform & mikro-vækninger',
+        brief: 'Standard danske mål er 140×200 cm (enkelt) og 200×220 cm (dobbelt). Til elevationssenge anbefales delt sengetøj eller stretch-jersey, så lagnet ikke spændes når sengen bøjes.',
+        details: `
+          <p>Lommedybden på et faconlagen bør være mindst 5–7 cm dybere end din madras (inkl. topmadras), så det ikke slipper om natten. Et lagen, der hopper af, er en af de mest almindelige årsager til, at man vågner uden at vide hvorfor.</p>
+          <p>Forskning på <em>mikro-vækninger</em> viser, at fysiske irritationer i sengen — et stramt lagen, en for varm dyne — kan udløse 3–15 sekunders opvågninger, som du ikke husker, men som forstyrrer REM-søvnens hukommelseskonsolidering.</p>
+          <p>Vidste du, at danske dynemål er blandt verdens største? En amerikansk king size måler 200×220 cm — det samme som vores standard danske dobbeltdyne. Til en elevationsseng anbefales typisk delt dyne (2 × 140×200 cm), så hver person kan justere uafhængigt.</p>
+        `
+      }
     },
   ];
 
@@ -655,6 +681,24 @@
           </button>
         `).join('')}
       </div>
+      ${q.insight ? `
+        <div class="insight mt-14 max-w-3xl mx-auto">
+          <div class="border-l-2 border-sage pl-6 md:pl-7">
+            <div class="flex items-center gap-2 mb-3">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5C6B58" stroke-width="1.8" aria-hidden="true"><path d="M12 2a7 7 0 0 0-4 12.7V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.3A7 7 0 0 0 12 2Z"/><path d="M10 22h4"/></svg>
+              <span class="text-[10px] tracking-[0.3em] uppercase text-sage">${q.insight.eyebrow}</span>
+            </div>
+            <p class="serif text-xl md:text-2xl text-ink leading-snug">${q.insight.brief}</p>
+            <div class="insight-details hidden mt-5 text-sm text-stone leading-relaxed space-y-3">
+              ${q.insight.details}
+            </div>
+            <button type="button" class="insight-toggle group text-[11px] uppercase tracking-[0.25em] text-stone hover:text-ink mt-5 inline-flex items-center gap-2 transition-colors">
+              <span class="toggle-label">Læs videre</span>
+              <svg class="chevron transition-transform duration-300" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      ` : ''}
     `;
 
     container.querySelectorAll('.quiz-card').forEach(card => {
@@ -665,6 +709,19 @@
         setTimeout(nextQuestion, 300);
       });
     });
+
+    const toggle = container.querySelector('.insight-toggle');
+    if (toggle){
+      toggle.addEventListener('click', () => {
+        const details = container.querySelector('.insight-details');
+        const chevron = toggle.querySelector('.chevron');
+        const label = toggle.querySelector('.toggle-label');
+        const isHidden = details.classList.contains('hidden');
+        details.classList.toggle('hidden');
+        chevron.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+        label.textContent = isHidden ? 'Læs mindre' : 'Læs videre';
+      });
+    }
   }
 
   function nextQuestion(){
