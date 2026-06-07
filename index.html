@@ -46,14 +46,6 @@
     h1,h2,h3,.serif { font-family:'Cormorant Garamond', serif; font-weight:400; letter-spacing:-0.01em; }
     h1 { letter-spacing:-0.02em; }
 
-    /* Brand wordmark */
-    .brand-wordmark {
-      font-family: 'Inter', sans-serif;
-      font-weight: 900;
-      letter-spacing: -0.035em;
-      line-height: 0.92;
-      color: #1F2420;
-    }
 
     /* fade animations */
     .fade-in { animation: fadeIn .55s ease forwards; }
@@ -290,15 +282,8 @@
           <span class="hidden sm:inline">Søg</span>
         </button>
       </div>
-      <a href="#" class="flex items-center gap-2.5" aria-label="Nordic Weaving">
-        <svg width="38" height="40" viewBox="0 0 60 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <ellipse cx="22" cy="30" rx="13" ry="22" stroke="#1F2420" stroke-width="4.5" transform="rotate(-14 22 30)"/>
-          <ellipse cx="38" cy="34" rx="13" ry="22" stroke="#1F2420" stroke-width="4.5" transform="rotate(14 38 34)"/>
-        </svg>
-        <div class="brand-wordmark text-[19px] md:text-[21px]">
-          <div>nordic</div>
-          <div>weaving</div>
-        </div>
+      <a href="#" class="flex items-center" aria-label="Nordic Weaving">
+        <img src="assets/logo.png" alt="Nordic Weaving" class="h-10 md:h-12 w-auto select-none" draggable="false" />
       </a>
       <div class="flex items-center gap-5 text-sm text-ink">
         <a href="#" class="hidden sm:inline hover:opacity-70">Konto</a>
